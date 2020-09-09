@@ -30,7 +30,7 @@ library(pander)
 library(kableExtra)
 library(leaflet)
 library(leaflet.extras)
-library(mapedit)
+#library(mapedit)
 library(readr)
 library(ncdf4)
 library(ggplot2)
@@ -192,11 +192,11 @@ server <- function(input, output,session) {
         updateTabsetPanel(session, "inTabset",selected ="Area Selection Explorer")
         if(input$select=="interactively"){
             
-            edits <- callModule(
-                editMod,
-                leafmap = map,
-                id = "map"
-            )
+        #    edits <- callModule(
+         #       editMod,
+          #      leafmap = map,
+           #     id = "map"
+         #  )
             observeEvent(input$save, {
                 updateTabsetPanel(session, "inTabset",selected ="Area Selection Explorer")
                 x_geom <- edits()$finished$geometry[[1]][[1]][,1]
@@ -212,7 +212,7 @@ server <- function(input, output,session) {
                 
             })
             output$area<-renderUI(
-                list( editModUI("map"),
+                list(# editModUI("map"),
                       "x coordinates:",br(),
                       verbatimTextOutput("xcoord"),
                       "y coordinates:",br(),
